@@ -1,0 +1,51 @@
+.container {
+  width: 235px;
+  position: relative;
+}
+
+.wrap_select {
+  height: 49px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.text {
+  color: #939393;
+  flex: 1;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.img_center {
+  width: 17px;
+  height: 24px;
+  margin: 0 13px 0 12px;
+}
+
+.img_arrow_down {
+  width: 12px;
+  height: 8px;
+  margin-right: 20px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px, rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px;
+  li {
+    height: 25px;
+    color: #000;
+    padding: 6px 16px;
+    cursor: pointer;
+    line-height: 25px;
+    font-weight: 400;
+    color: #939393;
+  }
+}

@@ -1,3 +1,5 @@
+@use '@styles/design-system.scss' as *;
+
 .container {
   width: 235px;
   position: relative;
@@ -16,7 +18,7 @@
 .text {
   color: #939393;
   flex: 1;
-  font-size: 12px;
+  font-size: $font-small;
   font-weight: 400;
 }
 

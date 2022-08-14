@@ -1,16 +1,12 @@
+import { Option } from '@types'
 import { useState } from 'react'
 import style from './index.module.scss'
 
-type Option = {
-  label: string
-  value: any
-}
-
 type SelectProps = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  value: Option
+  onChange: (value: any) => void
+  value?: Option
   placeholder?: string
-  options: Option[]
+  options?: Option[]
 }
 
 const defaultOptions: Option[] = [
@@ -23,27 +19,31 @@ const defaultOptions: Option[] = [
 
 type DropdownProps = {
   options: Option[]
+  onChange: (value: any) => void
 }
 
-const Dropdown = ({ options }: DropdownProps) => {
-  const renderOptions = () => options.map(option => <li>{option.label}</li>)
+const Dropdown = ({ options, onChange }: DropdownProps) => {
+  const renderOptions = () => options.map(option => <li onClick={() => onChange(option)}>{option.label}</li>)
   return <ul className={style.dropdown}>{renderOptions()}</ul>
 }
 
-const Select = () => {
-  const [selectedValue, setSelectedValue] = useState<Option | undefined>(undefined)
+const Select = ({ onChange, value, placeholder, options = defaultOptions }: SelectProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const toggleOpen = () => {
     setIsOpen(open => !open)
+  }
+  const onClickOption = (option: Option) => {
+    setIsOpen(false)
+    onChange(option)
   }
   return (
     <div className={style.container}>
       <div className={style.wrap_select} onClick={toggleOpen}>
         <img className={style.img_center} src="./images/center.svg" alt="center" />
-        <label className={style.text}>{selectedValue ? selectedValue.label : '물류센터를 선택해주세요'}</label>
+        <label className={style.text}>{value ? value.label : placeholder}</label>
         <img className={style.img_arrow_down} src="./images/arrow-down.svg" alt="open" />
       </div>
-      {isOpen && <Dropdown options={defaultOptions} />}
+      {isOpen && <Dropdown options={options} onChange={onClickOption} />}
     </div>
   )
 }

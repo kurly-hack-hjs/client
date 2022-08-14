@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { App } from '@components'
+import { Login } from './pages'
 import { RecoilRoot } from 'recoil'
 import reportWebVitals from './reportWebVitals'
 import '@styles/_reset.scss'

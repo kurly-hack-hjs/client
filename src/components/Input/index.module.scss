@@ -1,3 +1,5 @@
+@use '@styles/design-system.scss' as *;
+
 .container {
   width: 235px;
   height: 49px;
@@ -8,6 +10,6 @@
   margin-bottom: 24px;
   text-indent: 16px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: $font-medium;
   box-sizing: border-box;
 }

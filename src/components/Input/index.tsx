@@ -7,8 +7,8 @@ type InputProps = {
   placeholder?: string
 }
 
-const Input = ({ onChange, value, type, placeholder }: InputProps) => {
-  return <input className={style.container} {...{ onChange, value, type, placeholder }} />
-}
+const Input = ({ onChange, value, type, placeholder }: InputProps) => (
+  <input className={style.container} {...{ onChange, value, type, placeholder }} />
+)
 
 export { Input }

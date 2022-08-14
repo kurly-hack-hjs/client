@@ -6,12 +6,10 @@ type ButtonProps = {
   block?: boolean
 }
 
-const Button = ({ onClick, children, block }: ButtonProps) => {
-  return (
-    <button className={`${style.container} ${block && style.block}`} onClick={onClick}>
-      {children}
-    </button>
-  )
-}
+const Button = ({ onClick, children, block }: ButtonProps) => (
+  <button className={`${style.container} ${block && style.block}`} onClick={onClick}>
+    {children}
+  </button>
+)
 
 export { Button }

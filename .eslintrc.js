@@ -61,5 +61,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'max-classes-per-file': 'off',
     'class-methods-use-this': 'off',
+    'arrow-body-style': ['error', 'as-needed'],
   },
 }

@@ -1,0 +1,48 @@
+@use '/src/styles/color';
+
+.container {
+  min-height: 100vh;
+  background: color.$MAIN;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.loginBox {
+  width: 375px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  background: color.$WHITE;
+  padding: 50px;
+  select {
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+  }
+  input {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: 1px solid color.$BORDER_GRAY;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-top: 30px;
+  }
+  button {
+    color: color.$WHITE;
+    width: 100%;
+    padding: 20px;
+    background: color.$MAIN;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+}
+
+.notice {
+  color: color.$TEXT_GRAY;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 30px;
+}

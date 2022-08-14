@@ -36,6 +36,7 @@
 
 .dropdown {
   position: absolute;
+  padding: 10px 0;
   top: 50px;
   width: 100%;
   background-color: #fff;
@@ -50,4 +51,8 @@
     font-weight: 400;
     color: #939393;
   }
+}
+
+.selected {
+  background-color: rgba(25, 118, 210, 0.08);
 }

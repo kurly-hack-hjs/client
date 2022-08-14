@@ -20,10 +20,16 @@ const defaultOptions: Option[] = [
 type DropdownProps = {
   options: Option[]
   onChange: (value: any) => void
+  value?: Option
 }
 
-const Dropdown = ({ options, onChange }: DropdownProps) => {
-  const renderOptions = () => options.map(option => <li onClick={() => onChange(option)}>{option.label}</li>)
+const Dropdown = ({ options, onChange, value }: DropdownProps) => {
+  const renderOptions = () =>
+    options.map(option => (
+      <li className={value && value.value === option.value ? style.selected : ''} onClick={() => onChange(option)}>
+        {option.label}
+      </li>
+    ))
   return <ul className={style.dropdown}>{renderOptions()}</ul>
 }
 
@@ -43,7 +49,7 @@ const Select = ({ onChange, value, placeholder, options = defaultOptions }: Sele
         <label className={style.text}>{value ? value.label : placeholder}</label>
         <img className={style.img_arrow_down} src="./images/arrow-down.svg" alt="open" />
       </div>
-      {isOpen && <Dropdown options={options} onChange={onClickOption} />}
+      {isOpen && <Dropdown options={options} onChange={onClickOption} value={value} />}
     </div>
   )
 }

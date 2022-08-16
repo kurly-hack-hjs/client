@@ -5,6 +5,11 @@ import { RecoilRoot } from 'recoil'
 import reportWebVitals from './reportWebVitals'
 import '@styles/_reset.scss'
 import '@styles/_global.scss'
+import { worker } from './mocks/worker'
+
+if (process.env.NODE_ENV === 'development') {
+  worker.start()
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

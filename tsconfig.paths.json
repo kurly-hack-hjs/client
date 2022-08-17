@@ -6,7 +6,7 @@
       "@components": ["src/components"],
       "@feature": ["src/feature"],
       "@hooks": ["src/hooks"],
-      "@recoil": ["src/recoil"],
+      "@recoil/*": ["src/recoil/*"],
       "@services": ["src/services"],
       "@styles/*": ["src/styles/*"],
       "@types": ["src/types"],

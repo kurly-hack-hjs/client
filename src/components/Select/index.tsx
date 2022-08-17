@@ -18,7 +18,10 @@ type DropdownProps = {
 const Dropdown = ({ options = [], onChange, value }: DropdownProps) => {
   const renderOptions = () =>
     options.map(option => (
-      <li className={value && value.value === option.value ? style.selected : ''} onClick={() => onChange(option)}>
+      <li
+        key={option.value}
+        className={value && value.value === option.value ? style.selected : ''}
+        onClick={() => onChange(option)}>
         {option.label}
       </li>
     ))

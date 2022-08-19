@@ -6,11 +6,12 @@
       "@components": ["src/components"],
       "@feature": ["src/feature"],
       "@hooks": ["src/hooks"],
-      "@recoil": ["src/recoil"],
+      "@recoil/*": ["src/recoil/*"],
       "@services": ["src/services"],
       "@styles/*": ["src/styles/*"],
       "@types": ["src/types"],
-      "@apis/*": ["src/apis/*"]
+      "@apis/*": ["src/apis/*"],
+      "@assets": ["src/assets"]
     },
     "module": "commonjs",
     "moduleResolution": "node"

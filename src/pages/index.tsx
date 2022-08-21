@@ -10,7 +10,7 @@ const App = () => (
       <Route path="/" element={<Login />} />
       <Route path="login" element={<Login />} />
       <Route path="list" element={<OrderList />} />
-      <Route path="confirm" element={<Confirm />} />
+      <Route path="confirm/:orderId" element={<Confirm />} />
     </Routes>
   </>
 )

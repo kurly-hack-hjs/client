@@ -7,41 +7,39 @@
   text-align: center;
   font-size: 16px;
   color: #404040;
+  margin: 10px 0;
   b {
-    font-weight: bold;
+    font-weight: 700;
   }
 }
 
 .filterWrap {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   margin: 20px 0;
-  button {
-    background: none;
-    border: none;
 
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .searchForm {
+  .buttonList {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border-radius: 30px;
-    border: 1px solid #787878;
-    padding: 5px 10px;
-    input {
-      font-size: 14px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+
+    button {
+      background: none;
       border: none;
+      width: 30px;
+      height: auto;
     }
   }
 }
+
 .orderUl {
   overflow: scroll;
-  li {
+  .orderList {
     position: relative;
     display: flex;
     width: 100%;
@@ -49,6 +47,52 @@
     padding: 13px 15px;
     box-sizing: border-box;
     border-bottom: 1px solid #d9d9d9;
+
+    &.validated {
+      color: #fff;
+      background: linear-gradient(45deg, #b57eea, #abb2ea);
+      .curcle {
+        border: 1px solid #fff;
+        color: #fff;
+      }
+      svg {
+        fill: white;
+      }
+      dl {
+        dt {
+          color: #fff;
+        }
+        dd {
+          color: #fff;
+        }
+      }
+    }
+
+    &.not_validated {
+      .curcle {
+        border: 1px dashed #787878;
+        color: #787878;
+      }
+    }
+    &.canceled {
+    }
+    &.failed {
+    }
+
+    .curcle {
+      display: flex;
+      width: 45px;
+      height: 45px;
+      text-align: center;
+      border: 1px solid #404040;
+      color: #404040;
+      border-radius: 50%;
+      font-size: 10px;
+      word-break: break-all;
+      align-items: center;
+      justify-content: center;
+    }
+
     .noValidated {
       width: 45px;
       height: 45px;

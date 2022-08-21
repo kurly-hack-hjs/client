@@ -10,7 +10,8 @@
       "@services": ["src/services"],
       "@styles/*": ["src/styles/*"],
       "@types": ["src/types"],
-      "@apis/*": ["src/apis/*"]
+      "@apis/*": ["src/apis/*"],
+      "@assets": ["src/assets"]
     },
     "module": "commonjs",
     "moduleResolution": "node"

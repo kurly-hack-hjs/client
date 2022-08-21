@@ -93,26 +93,6 @@
       justify-content: center;
     }
 
-    .noValidated {
-      width: 45px;
-      height: 45px;
-      line-height: 45px;
-      text-align: center;
-      border: 1px dashed #787878;
-      border-radius: 50%;
-      color: #787878;
-    }
-
-    .validated {
-      width: 45px;
-      height: 45px;
-      line-height: 45px;
-      text-align: center;
-      border: 1px solid #404040;
-      border-radius: 50%;
-      color: #404040;
-    }
-
     dl {
       display: flex;
       flex: 1;

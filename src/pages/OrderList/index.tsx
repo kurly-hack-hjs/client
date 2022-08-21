@@ -8,13 +8,15 @@ import { orderListAtom } from '@recoil/orders'
 import { FilterIcon, SearchIcon, RightArrowIcon } from '@src/assets/svgs'
 import FilterDialog from '@src/feature/FilterDialog'
 import { PurpleLogo } from '@src/components/PurpleLogo'
+import OrderAlertDialog from '@src/feature/OrderAlertDialog'
 
 const OrderList = () => {
   const [orderList, setOrderList] = useRecoilState(orderListAtom)
   const [orderId, setOrderId] = useState('')
   const [filterOpen, setFilterOpen] = useState(false)
   const [filter, setFilter] = useState('주문번호')
-
+  const [alertOpen, setAlertOpen] = useState(false)
+  const [todayShow, setTodayShow] = useState(true)
   useEffect(() => {
     ;(async () => {
       const data = await getOrders()
@@ -25,6 +27,7 @@ const OrderList = () => {
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setOrderId(e.currentTarget.value)
   }
+  const handleSearchOpen = () => {}
 
   const handleFilterOpen = () => {
     setFilterOpen(true)
@@ -33,12 +36,17 @@ const OrderList = () => {
   const handleFilterClose = () => {
     setFilterOpen(false)
   }
-  const handleSearchOpen = () => {}
-
+  const handleAlertOpen = () => {
+    setAlertOpen(true)
+  }
+  const handleAlertClose = () => {
+    setAlertOpen(false)
+  }
   if (!orderList) return null
+  console.log(alertOpen)
   return (
     <div className={style.wrapper}>
-      <FilterDialog id="ringtone-menu" keepMounted open={filterOpen} onClose={handleFilterClose} value={filter} />
+      <FilterDialog keepMounted open={filterOpen} onClose={handleFilterClose} value={filter} />
       <div className={style.container}>
         <div className={style.filterWrap}>
           <PurpleLogo />
@@ -61,13 +69,14 @@ const OrderList = () => {
       </div>
       <ul className={style.orderUl}>
         {orderList.map(order => (
-          <li key={order.id} className={cx(style.orderList, style[order.status])}>
+          <li key={order.id} className={cx(style.orderList, style[order.status])} onClick={handleAlertOpen}>
             <div className={style.curcle}>{order.status}</div>
             <dl>
               <dt>주문번호:{order.id}</dt>
               <dd>-{order.status}</dd>
             </dl>
             <RightArrowIcon className={style.rightArrow} />
+            {todayShow && <OrderAlertDialog open={alertOpen} onClose={handleAlertClose} value={order} />}
           </li>
         ))}
       </ul>

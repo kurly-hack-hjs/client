@@ -1,8 +1,4 @@
-import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogActions from '@mui/material/DialogActions'
@@ -15,7 +11,6 @@ import { useEffect, useRef, useState } from 'react'
 const options = ['주문번호', '검증여부', '결과', '날짜순']
 
 export interface ConfirmationDialogRawProps {
-  id: string
   keepMounted: boolean
   value: string
   open: boolean

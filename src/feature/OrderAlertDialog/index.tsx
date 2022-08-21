@@ -1,14 +1,13 @@
-import * as React from 'react'
+import { FormControlLabel } from '@mui/material'
 import Button from '@mui/material/Button'
+import Checkbox from '@mui/material/Checkbox'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
-import Checkbox from '@mui/material/Checkbox'
-import { FormControlLabel } from '@mui/material'
+import { checkmarkImg, errorImg } from '@src/assets/pngs'
 import { Order } from '@src/types'
 import styles from './orderAlertDialog.module.scss'
-import { checkmarkImg, errorImg } from '@src/assets/pngs'
 
 export interface ConfirmationDialogRawProps {
   value: Order

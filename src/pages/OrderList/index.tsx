@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import cx from 'classnames'
-import style from './orderList.module.scss'
 import { getOrders } from '@apis/order'
-import React, { ChangeEvent, useEffect } from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { orderListAtom } from '@recoil/orders'
-import { FilterIcon, SearchIcon, RightArrowIcon } from '@src/assets/svgs'
-import FilterDialog from '@src/feature/FilterDialog'
+import { FilterIcon, RightArrowIcon, SearchIcon } from '@src/assets/svgs'
 import { PurpleLogo } from '@src/components/PurpleLogo'
+import FilterDialog from '@src/feature/FilterDialog'
 import OrderAlertDialog from '@src/feature/OrderAlertDialog'
+import cx from 'classnames'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import style from './orderList.module.scss'
 
 const OrderList = () => {
   const [orderList, setOrderList] = useRecoilState(orderListAtom)
@@ -17,6 +16,7 @@ const OrderList = () => {
   const [filter, setFilter] = useState('주문번호')
   const [alertOpen, setAlertOpen] = useState(false)
   const [todayShow, setTodayShow] = useState(true)
+
   useEffect(() => {
     ;(async () => {
       const data = await getOrders()

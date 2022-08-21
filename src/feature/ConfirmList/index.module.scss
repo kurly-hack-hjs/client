@@ -47,6 +47,7 @@
     p {
       margin-bottom: 7px;
       line-height: 14px;
+      @include ellipsis($line: 2);
     }
   }
 }

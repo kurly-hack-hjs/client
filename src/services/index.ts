@@ -1,4 +1,11 @@
+import AWS from 'aws-sdk'
 import { SCAN_STATUS } from '@src/types'
+
+AWS.config.update({
+  region: process.env.REACT_APP_AWS_REGION,
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+})
 
 export const getScanStatusString = (scanStatus: SCAN_STATUS) => {
   switch (scanStatus) {
@@ -11,4 +18,16 @@ export const getScanStatusString = (scanStatus: SCAN_STATUS) => {
     case SCAN_STATUS.standby:
       return '미검증'
   }
+}
+
+export const uploadImage = async (file: File) => {
+  const upload = new AWS.S3.ManagedUpload({
+    params: {
+      Bucket: process.env.REACT_APP_AWS_S3_BUCKET_NAME || '',
+      Key: file.name,
+      Body: file,
+    },
+  })
+  const response = await upload.promise()
+  return response
 }

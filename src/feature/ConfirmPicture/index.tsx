@@ -3,12 +3,24 @@ import { useFileUpload } from '@src/hooks'
 import { Button } from '@src/components'
 import { useEffect } from 'react'
 import { uploadImage } from '@services'
+import * as ConfirmAPI from '@apis/confirm'
 
 const ConfirmPicture = () => {
   const { DummyElement, fileInfo, uploadFile } = useFileUpload()
   useEffect(() => {
     if (!fileInfo) return
     uploadImage(fileInfo.file)
+    const upload = async () => {
+      const response = await uploadImage(fileInfo.file)
+      const data = await ConfirmAPI.scan({
+        orderId: 1231246,
+        imageUrl: 'https://img-cf.kurly.com/shop/data/goods/1656479672431l0.jpg',
+        loginId: 'young',
+      })
+      console.log(response)
+      console.log(data)
+    }
+    upload()
   }, [fileInfo])
   return (
     <div className={style.container}>

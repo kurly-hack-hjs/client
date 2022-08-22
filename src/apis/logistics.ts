@@ -1,9 +1,8 @@
 import { GetLogisticsResponse } from '@src/types'
-import axios from 'axios'
+import endpoint from './endpoint'
 
 const getLogistics = async (): Promise<GetLogisticsResponse> => {
-  // for mock API
-  const response = await axios.get('/logistics')
+  const response = await endpoint.get('/logistics')
   const { data } = response
   return data
 }

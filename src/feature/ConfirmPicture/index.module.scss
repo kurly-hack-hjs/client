@@ -1,0 +1,70 @@
+@use '@styles/design-system.scss' as *;
+
+.container {
+  background-color: #fff;
+  padding: 16px 32px 32px 26px;
+}
+
+.section_title {
+  color: $primary-color;
+  font-weight: 700;
+  font-size: $font-medium;
+  margin-bottom: 10px;
+}
+.section_desc {
+  font-weight: 400;
+  color: rgba(60, 60, 67, 0.6);
+  line-height: 15px;
+  margin-bottom: 18px;
+}
+
+.result_header {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  margin-right: 13px;
+}
+
+.icon {
+  margin-left: 6px;
+}
+
+.result_container {
+  margin-left: 9px;
+  border-left: 2px solid #b67beb;
+  padding: 8px 0 20px 18px;
+}
+
+.result_content {
+  width: 288px;
+  height: 105px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.warning,
+.success {
+  .circle {
+    content: url('../../../public/images/circle_filled.svg');
+  }
+}
+
+.before {
+  .circle {
+    content: url('../../../public/images/circle_empty.svg');
+  }
+}
+
+.warning {
+  .icon {
+    content: url('../../../public/images/warning.svg');
+  }
+}
+
+.success {
+  .icon {
+    content: url('../../../public/images/success.svg');
+  }
+}

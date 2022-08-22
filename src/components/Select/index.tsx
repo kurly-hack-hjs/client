@@ -9,31 +9,26 @@ type SelectProps = {
   options?: Option[]
 }
 
-const defaultOptions: Option[] = [
-  { label: '송파', value: 'C-01' },
-  { label: '항동', value: 'C-02' },
-  { label: '김포', value: 'C-03' },
-  { label: '화도', value: 'C-04' },
-  { label: '죽전', value: 'C-05' },
-]
-
 type DropdownProps = {
-  options: Option[]
+  options?: Option[]
   onChange: (value: any) => void
   value?: Option
 }
 
-const Dropdown = ({ options, onChange, value }: DropdownProps) => {
+const Dropdown = ({ options = [], onChange, value }: DropdownProps) => {
   const renderOptions = () =>
     options.map(option => (
-      <li className={value && value.value === option.value ? style.selected : ''} onClick={() => onChange(option)}>
+      <li
+        key={option.value}
+        className={value && value.value === option.value ? style.selected : ''}
+        onClick={() => onChange(option)}>
         {option.label}
       </li>
     ))
   return <ul className={style.dropdown}>{renderOptions()}</ul>
 }
 
-const Select = ({ onChange, value, placeholder, options = defaultOptions }: SelectProps) => {
+const Select = ({ onChange, value, placeholder, options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const toggleOpen = () => {
     setIsOpen(open => !open)

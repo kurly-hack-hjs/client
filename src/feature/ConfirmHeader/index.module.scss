@@ -1,0 +1,42 @@
+.container {
+  background-color: #fff;
+  margin-bottom: 8px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.info {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  margin-bottom: 16px;
+  padding-left: 35px;
+  padding-bottom: 15px;
+  em {
+    font-weight: 700;
+  }
+}
+
+.btn_close {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 25px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.header {
+  display: flex;
+  padding: 55px 0 60px;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+}

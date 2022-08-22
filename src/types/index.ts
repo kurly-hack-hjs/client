@@ -16,6 +16,7 @@ export type Product = {
   amount: number
 }
 
+// will Removed
 export enum ORDER_STATUS {
   validated = 'validated',
   not_validated = 'not_validated',
@@ -23,10 +24,21 @@ export enum ORDER_STATUS {
   failed = 'failed',
 }
 
+export enum SCAN_STATUS {
+  standby = 'STANDBY',
+  complete = 'COMPLETE',
+  orderCancel = 'ORDER_CANCEL',
+  scanFail = 'SCAN_FAIL',
+}
+
 export type Order = {
   id: number
   status: ORDER_STATUS
-  products: Product[]
+  scanStatus: SCAN_STATUS
+  orderDate: string
+  updatedUserId: string
+  quantity: number
+  memo: string
 }
 
 export type GetOrdersResponse = Order[]
@@ -45,3 +57,25 @@ export type LoginParams = {
 }
 
 export type LoginResponse = User
+
+export type Item = {
+  id: string
+  name: string
+  count: number
+  scanStatus: SCAN_STATUS
+}
+
+export type GetOrderParams = {
+  orderId: number
+}
+
+export type Items = {
+  itemList: Item[]
+  orderId: number
+  totalItemCount: number
+}
+
+export type GetOrderResponse = {
+  items: Items
+  order: Order
+}

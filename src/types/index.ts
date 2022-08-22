@@ -79,3 +79,9 @@ export type GetOrderResponse = {
   items: Items
   order: Order
 }
+
+export type ScanParams = {
+  imageUrl: string
+  orderId: number
+  loginId: string
+}

@@ -8,9 +8,9 @@ const ConfirmPicture = () => (
     <ul>
       <li className={`${style.confirm_result} ${style.warning}`}>
         <div className={style.result_header}>
-          <img className={style.circle}></img>
+          <img className={style.circle} />
           <p>1차 검증 결과</p>
-          <img className={style.icon}></img>
+          <img className={style.icon} />
         </div>
         <div className={style.result_container}>
           <div className={style.result_content}></div>
@@ -18,9 +18,9 @@ const ConfirmPicture = () => (
       </li>
       <li className={`${style.confirm_result} ${style.success}`}>
         <div className={style.result_header}>
-          <img className={style.circle}></img>
+          <img className={style.circle} />
           <p>2차 검증 결과</p>
-          <img className={style.icon}></img>
+          <img className={style.icon} />
         </div>
         <div className={style.result_container}>
           <div className={style.result_content}></div>
@@ -28,9 +28,9 @@ const ConfirmPicture = () => (
       </li>
       <li className={`${style.confirm_result} ${style.before}`}>
         <div className={style.result_header}>
-          <img className={style.circle}></img>
+          <img className={style.circle} />
           <p>3차 검증 결과</p>
-          <img className={style.icon}></img>
+          <img className={style.icon} />
         </div>
         <div className={style.result_container}>
           <Button block>검증하기</Button>
@@ -38,9 +38,9 @@ const ConfirmPicture = () => (
       </li>
       <li className={`${style.confirm_result} ${style.before}`}>
         <div className={style.result_header}>
-          <img className={style.circle}></img>
+          <img className={style.circle} />
           <p>4차 검증 결과</p>
-          <img className={style.icon}></img>
+          <img className={style.icon} />
         </div>
         <div className={style.result_container}>
           <Button block>검증하기</Button>
@@ -48,9 +48,9 @@ const ConfirmPicture = () => (
       </li>
       <li className={`${style.confirm_result} ${style.before}`}>
         <div className={style.result_header}>
-          <img className={style.circle}></img>
+          <img className={style.circle} />
           <p>5차 검증 결과</p>
-          <img className={style.icon}></img>
+          <img className={style.icon} />
         </div>
         <div className={style.result_container}>
           <Button block>검증하기</Button>

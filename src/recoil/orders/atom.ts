@@ -6,8 +6,8 @@ const orderListAtom = atom<Order[]>({
   default: [],
 })
 
-export const orderIdAtom = atom({
-  key: 'orderId',
+export const searchKeywordAtom = atom({
+  key: 'searchKeyword',
   default: '',
 })
 

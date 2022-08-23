@@ -31,6 +31,12 @@ export enum SCAN_STATUS {
   scanFail = 'SCAN_FAIL',
 }
 
+export type Sort = {
+  sorted: boolean
+  unsorted: boolean
+  empty: boolean
+}
+
 export type Order = {
   id: number
   status: ORDER_STATUS
@@ -41,7 +47,15 @@ export type Order = {
   memo: string
 }
 
-export type GetOrdersResponse = Order[]
+export type OrderList = Order[] | Order
+
+export type GetOrdersResponse = {
+  content: Order[]
+  empty: false
+  number: number
+  numberOfElements: number
+  sort: Sort
+}
 
 export type User = {
   loginId: string

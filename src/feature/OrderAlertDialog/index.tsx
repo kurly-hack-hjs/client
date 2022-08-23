@@ -11,7 +11,7 @@ import styles from './orderAlertDialog.module.scss'
 import { checkmarkImg, errorImg } from '@src/assets/pngs'
 
 export interface ConfirmationDialogRawProps {
-  value: Order
+  value: Order | undefined
   open: boolean
   onClose: (value?: string) => void
 }
@@ -28,7 +28,6 @@ export default function OrderAlertDialog(props: ConfirmationDialogRawProps) {
       <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title">
         <DialogTitle id="alert-dialog-title">정방향 사진을 등록해주세요.</DialogTitle>
         <DialogContent>
-          <p>{valueProp.id}</p>
           <ul className={styles.alertUl}>
             <li>
               <div className={styles.alertImg}></div>

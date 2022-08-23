@@ -1,7 +1,6 @@
 import { Button, Input, Select } from '@components'
 import { useLoginCallback } from '@hooks'
 import logisticsAtom from '@recoil/logistics'
-import { Option } from '@types'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import style from './index.module.scss'

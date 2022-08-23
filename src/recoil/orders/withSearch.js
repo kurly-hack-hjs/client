@@ -1,6 +1,6 @@
 import { selector } from 'recoil'
 
-import { orderListAtom, orderIdAtom } from './atom'
+import orderListAtom, { orderIdAtom } from './atom'
 
 const orderWithSearch = selector({
   key: 'orderWithSearch',

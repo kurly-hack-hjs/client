@@ -1,38 +1,56 @@
-import { useState } from 'react'
+import { PurpleLogo } from '@components'
+import { OrderAlertDialog, OrderSearch } from '@feature'
+import { useGetOrderListCallback } from '@hooks'
+import orderListAtom from '@recoil/orders'
+import { RightArrowIcon, SearchIcon } from '@src/assets/svgs'
+import { getScanStatusString } from '@src/services'
+import { Order, SCAN_STATUS } from '@types'
 import cx from 'classnames'
-import style from './orderList.module.scss'
-import { getOrders } from '@apis/order'
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { orderListAtom } from '@recoil/orders'
-import { SearchIcon, RightArrowIcon } from '@src/assets/svgs'
-import { PurpleLogo } from '@src/components/PurpleLogo'
-import OrderAlertDialog from '@src/feature/OrderAlertDialog'
-import OrderSearch from '@src/feature/OrderSearch'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import style from './index.module.scss'
 
 const OrderList = () => {
-  const [orderList, setOrderList] = useRecoilState(orderListAtom)
-  const [alertOpen, setAlertOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [todayShow, setTodayShow] = useState(true)
+  const orderList = useRecoilValue<Order[]>(orderListAtom)
+  const [alertOpen, setAlertOpen] = useState<boolean>(false)
+  const [selectedOrder, selectOrder] = useState<Order | undefined>(undefined)
+
+  const getOrderListCallback = useGetOrderListCallback()
 
   useEffect(() => {
-    ;(async () => {
-      const data = await getOrders()
-      setOrderList(data.content)
-    })()
-  }, [setOrderList])
+    getOrderListCallback()
+  }, [getOrderListCallback])
 
-  const handleSearchOpen = () => {
-    setSearchOpen(!searchOpen)
-  }
-
-  const handleAlertOpen = () => {
+  const handleAlertOpen = (order: Order) => {
+    selectOrder(order)
     setAlertOpen(true)
   }
+
   const handleAlertClose = () => {
+    selectOrder(undefined)
     setAlertOpen(false)
   }
+
+  const getScanStatusInCircle = (scanStatus: SCAN_STATUS) => {
+    const str = getScanStatusString(scanStatus)
+    return str.split(' ').join('\n')
+  }
+
+  const renderOrders = () =>
+    orderList.map(order => (
+      <li
+        key={order.id}
+        className={cx(style.orderList, style[order.scanStatus])}
+        onClick={() => handleAlertOpen(order)}>
+        <div className={style.circle}>{getScanStatusInCircle(order.scanStatus)}</div>
+        <dl>
+          <dt>주문번호:{order.id}</dt>
+          <dd>-{order.memo}</dd>
+        </dl>
+        <RightArrowIcon className={style.rightArrow} />
+      </li>
+    ))
+
   if (!orderList) return null
 
   return (
@@ -43,7 +61,7 @@ const OrderList = () => {
           <PurpleLogo />
           <ul className={style.buttonList}>
             <li>
-              <button type="button" onClick={handleSearchOpen}>
+              <button type="button">
                 <SearchIcon />
               </button>
             </li>
@@ -53,30 +71,8 @@ const OrderList = () => {
           <b>이소담</b> 님의 검증을 기다리고 있는 주문입니다.
         </p>
       </div>
-      <ul className={style.orderUl}>
-        {Array.isArray(orderList) ? (
-          orderList.map(order => (
-            <li key={order.id} className={cx(style.orderList, style[order.scanStatus])} onClick={handleAlertOpen}>
-              <div className={style.curcle}>{order.scanStatus}</div>
-              <dl>
-                <dt>주문번호:{order.id}</dt>
-                <dd>-{order.memo}</dd>
-              </dl>
-              <RightArrowIcon className={style.rightArrow} />
-              {todayShow && <OrderAlertDialog open={alertOpen} onClose={handleAlertClose} value={order} />}
-            </li>
-          ))
-        ) : (
-          <li className={cx(style.orderList, style[orderList.scanStatus])} onClick={handleAlertOpen}>
-            <div className={style.curcle}>{orderList.scanStatus}</div>
-            <dl>
-              <dt>주문번호:{orderList.id}</dt>
-              <dd>-{orderList.memo}</dd>
-            </dl>
-            <RightArrowIcon className={style.rightArrow} />
-          </li>
-        )}
-      </ul>
+      <ul className={style.orderUl}>{renderOrders()}</ul>
+      <OrderAlertDialog open={alertOpen} onClose={handleAlertClose} value={selectedOrder} />
     </div>
   )
 }

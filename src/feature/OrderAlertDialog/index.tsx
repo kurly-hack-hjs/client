@@ -9,6 +9,7 @@ import { FormControlLabel } from '@mui/material'
 import { Order } from '@src/types'
 import styles from './orderAlertDialog.module.scss'
 import { checkmarkImg, errorImg } from '@src/assets/pngs'
+import { useNavigate } from 'react-router-dom'
 
 export interface ConfirmationDialogRawProps {
   value: Order | undefined
@@ -17,10 +18,15 @@ export interface ConfirmationDialogRawProps {
 }
 
 const OrderAlertDialog = (props: ConfirmationDialogRawProps) => {
-  const { onClose, value: valueProp, open, ...other } = props
-
+  const { onClose, value, open } = props
+  const navigate = useNavigate()
   const handleClose = () => {
     onClose()
+  }
+
+  const onOk = () => {
+    if (!value) return
+    navigate(`/confirm/${value.id}`)
   }
 
   return (
@@ -42,7 +48,7 @@ const OrderAlertDialog = (props: ConfirmationDialogRawProps) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>CANCEL</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={onOk} autoFocus>
             OK
           </Button>
         </DialogActions>

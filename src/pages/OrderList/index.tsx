@@ -1,8 +1,8 @@
 import { PurpleLogo } from '@components'
 import { OrderAlertDialog, OrderSearch } from '@feature'
 import { useGetOrderListCallback } from '@hooks'
-import orderListAtom from '@recoil/orders'
-import { RightArrowIcon, SearchIcon } from '@src/assets/svgs'
+import { orderWithSearch } from '@recoil/orders'
+import { RightArrowIcon } from '@src/assets/svgs'
 import { getScanStatusString } from '@src/services'
 import { Order, SCAN_STATUS } from '@types'
 import cx from 'classnames'
@@ -11,7 +11,7 @@ import { useRecoilValue } from 'recoil'
 import style from './index.module.scss'
 
 const OrderList = () => {
-  const orderList = useRecoilValue<Order[]>(orderListAtom)
+  const orderList = useRecoilValue<Order[]>(orderWithSearch)
   const [alertOpen, setAlertOpen] = useState<boolean>(false)
   const [selectedOrder, selectOrder] = useState<Order | undefined>(undefined)
 
@@ -55,18 +55,11 @@ const OrderList = () => {
 
   return (
     <div className={style.wrapper}>
-      <OrderSearch />
       <div className={style.container}>
         <div className={style.filterWrap}>
           <PurpleLogo />
-          <ul className={style.buttonList}>
-            <li>
-              <button type="button">
-                <SearchIcon />
-              </button>
-            </li>
-          </ul>
         </div>
+        <OrderSearch />
         <p className={style.notice}>
           <b>이소담</b> 님의 검증을 기다리고 있는 주문입니다.
         </p>

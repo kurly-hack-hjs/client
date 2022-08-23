@@ -1,49 +1,50 @@
-import { useGetOrderCallback } from '@src/hooks'
-import { useParams, useSearchParams } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import orderListAtom, { orderIdAtom } from '@recoil/orders'
-import { orderWithOrderIdURLParam } from '@recoil/order'
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import * as OrderAPI from '@apis/order'
-import styles from './orderSearch.module.scss'
+import { ChangeEvent, FormEvent, useState } from 'react'
+import SearchIcon from '@mui/icons-material/Search'
+import IconButton from '@mui/material/IconButton'
+import InputBase from '@mui/material/InputBase'
+import Paper from '@mui/material/Paper'
+import { searchKeywordAtom } from '@recoil/orders'
+import { useSetRecoilState } from 'recoil'
 
 const OrderSearch = () => {
-  const [orderList, setOrderList] = useRecoilState(orderListAtom)
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [orderId, setOrderId] = useState(searchParams.get('orderId') ?? '')
-
-  const getOrderCallback = useGetOrderCallback()
-  const orderInfo = useRecoilValue(orderWithOrderIdURLParam(orderId))
-
-  useEffect(() => {
-    if (orderId) getOrderCallback({ orderId: parseInt(orderId) })
-  }, [orderId, getOrderCallback])
-
-  if (!orderInfo) {
-    return <div>can not found</div>
-  }
-  const { order } = orderInfo
-
-  const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
-    e?.preventDefault()
-    if (!orderId) {
-      // eslint-disable-next-line no-alert
-      alert('검색어를 입력해주세요')
-      return
-    }
-    setSearchParams({ orderId: orderId })
+  const [value, setValue] = useState<string>('')
+  const setKeyword = useSetRecoilState(searchKeywordAtom)
+  const onSearch = () => {
+    setKeyword(value)
   }
 
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setOrderId(e.currentTarget.value)
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
   }
 
   return (
-    <div className={styles.searchBarWrap}>
-      <form onSubmit={handleSubmit} className={styles.searchBarFixed}>
-        <input onChange={handleSearchChange} type="text" name="orderId" value={orderId} />
-      </form>
-    </div>
+    <Paper
+      component="form"
+      sx={{
+        p: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: '170px',
+        height: '40px',
+        borderRadius: 30,
+        boxSizing: 'border-box',
+        backgroundColor: '#F4F4F4',
+        m: '16px 0 32px',
+      }}>
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        inputProps={{ placeholder: '주문번호 입력' }}
+        onChange={onChange}
+        value={value}
+      />
+      <IconButton
+        type="button"
+        sx={{ p: '10px', width: 48, height: 48, color: '#787878' }}
+        aria-label="search"
+        onClick={onSearch}>
+        <SearchIcon />
+      </IconButton>
+    </Paper>
   )
 }
 

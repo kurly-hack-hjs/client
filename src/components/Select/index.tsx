@@ -28,7 +28,6 @@ const Select = ({ onChange, value, placeholder, options }: SelectProps) => {
       <MSelect
         value={value}
         label="물류센터"
-        sx={{ height: 49 }}
         onChange={e => {
           onChange(e.target.value)
         }}>

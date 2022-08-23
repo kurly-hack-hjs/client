@@ -1,7 +1,7 @@
 import { useGetOrderCallback } from '@src/hooks'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { orderListAtom, orderIdAtom } from '@recoil/orders'
+import orderListAtom, { orderIdAtom } from '@recoil/orders'
 import { orderWithOrderIdURLParam } from '@recoil/order'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as OrderAPI from '@apis/order'
@@ -23,8 +23,6 @@ const OrderSearch = () => {
     return <div>can not found</div>
   }
   const { order } = orderInfo
-
-  setOrderList(order)
 
   const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault()
@@ -49,4 +47,4 @@ const OrderSearch = () => {
   )
 }
 
-export default OrderSearch
+export { OrderSearch }

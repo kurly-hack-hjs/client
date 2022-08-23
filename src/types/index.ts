@@ -29,6 +29,10 @@ export enum SCAN_STATUS {
   complete = 'COMPLETE',
   orderCancel = 'ORDER_CANCEL',
   scanFail = 'SCAN_FAIL',
+  scanning = 'SCANNING',
+  reset = 'RESET',
+  countError = 'COUNT_ERROR',
+  etc = 'ETC',
 }
 
 export type Sort = {
@@ -46,8 +50,6 @@ export type Order = {
   quantity: number
   memo: string
 }
-
-export type OrderList = Order[] | Order
 
 export type GetOrdersResponse = {
   content: Order[]

@@ -5,7 +5,7 @@ import style from './index.module.scss'
 
 const Login = () => (
   <div className={style.container}>
-    <Logo />
+    <img alt="logo" src={'/images/mainLogo.png'} className={style.mainLogo} />
     <Suspense>
       <LoginForm />
     </Suspense>

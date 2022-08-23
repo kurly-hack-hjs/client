@@ -16,7 +16,7 @@ export interface ConfirmationDialogRawProps {
   onClose: (value?: string) => void
 }
 
-export default function OrderAlertDialog(props: ConfirmationDialogRawProps) {
+const OrderAlertDialog = (props: ConfirmationDialogRawProps) => {
   const { onClose, value: valueProp, open, ...other } = props
 
   const handleClose = () => {
@@ -50,3 +50,5 @@ export default function OrderAlertDialog(props: ConfirmationDialogRawProps) {
     </div>
   )
 }
+
+export { OrderAlertDialog }

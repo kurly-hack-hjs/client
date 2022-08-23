@@ -2,6 +2,7 @@ import { Logo } from '@components'
 import userAtom from '@recoil/user'
 import { getScanStatusString } from '@services'
 import { Order } from '@src/types'
+import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import style from './index.module.scss'
 
@@ -10,12 +11,13 @@ type ConfirmHeaderProps = {
 }
 
 const ConfirmHeader = ({ order }: ConfirmHeaderProps) => {
+  const navigate = useNavigate()
   const { id, scanStatus } = order
   const user = useRecoilValue(userAtom)
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <button className={style.btn_close}>
+        <button className={style.btn_close} onClick={() => navigate(-1)}>
           <img src="/images/close.svg" />
         </button>
         <Logo primary size="small" />

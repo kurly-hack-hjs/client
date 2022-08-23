@@ -1,5 +1,5 @@
 import { FormControl } from '@mui/material'
-import OutlinedInput from '@mui/material/OutlinedInput'
+import TextField from '@mui/material/TextField'
 import style from './index.module.scss'
 
 type InputProps = {
@@ -11,7 +11,7 @@ type InputProps = {
 
 const Input = ({ onChange, value, type, placeholder }: InputProps) => (
   <FormControl variant="outlined">
-    <OutlinedInput className={style.container} {...{ onChange, value, type, placeholder }} />
+    <TextField className={style.container} {...{ onChange, value, type, placeholder, label: placeholder }} />
   </FormControl>
 )
 

@@ -8,10 +8,12 @@ import { Order, SCAN_STATUS } from '@types'
 import cx from 'classnames'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+import userAtom from '@recoil/user'
 import style from './index.module.scss'
 
 const OrderList = () => {
   const orderList = useRecoilValue<Order[]>(orderWithSearch)
+  const user = useRecoilValue(userAtom)
   const [alertOpen, setAlertOpen] = useState<boolean>(false)
   const [selectedOrder, selectOrder] = useState<Order | undefined>(undefined)
 
@@ -61,7 +63,7 @@ const OrderList = () => {
         </div>
         <OrderSearch />
         <p className={style.notice}>
-          <b>이소담</b> 님의 검증을 기다리고 있는 주문입니다.
+          <b>{user?.loginId}</b> 님의 검증을 기다리고 있는 주문입니다.
         </p>
       </div>
       <ul className={style.orderUl}>{renderOrders()}</ul>

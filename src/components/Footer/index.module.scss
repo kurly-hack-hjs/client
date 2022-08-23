@@ -1,0 +1,8 @@
+@use '@styles/design-system.scss' as *;
+
+.container {
+  width: 100%;
+  height: 42px;
+  text-align: center;
+  color: $primary-color;
+}

@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
-import { LoginResponse } from '@src/types'
+import { User } from '@src/types'
 
-const userAtom = atom<LoginResponse | undefined>({
+const userAtom = atom<User | undefined>({
   key: 'user',
   default: undefined,
 })

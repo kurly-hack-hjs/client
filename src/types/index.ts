@@ -50,10 +50,10 @@ export type User = {
 }
 
 export type LoginParams = {
-  userName: string
-  code: string
+  loginId: string
+  staffCode: string
   password: string
-  logistic_code: string
+  centerName: string
 }
 
 export type LoginResponse = User

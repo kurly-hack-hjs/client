@@ -7,28 +7,28 @@ import { useRecoilValue } from 'recoil'
 import style from './index.module.scss'
 
 type UserInput = {
-  userName: string
+  loginId: string
   password: string
-  code: string
-  center: Option | undefined
+  staffCode: string
+  center: string
 }
 
 const defaultValue: UserInput = {
-  userName: '',
+  loginId: '',
   password: '',
-  code: '',
-  center: undefined,
+  staffCode: '',
+  center: '',
 }
 
 const LoginForm = () => {
   const logistics = useRecoilValue(logisticsAtom)
   const options = logistics.map(({ name, code }) => ({ label: name, value: code }))
   const [userInput, setUserInput] = useState<UserInput>(defaultValue)
-  const { userName, password, code, center } = userInput
+  const { loginId, password, staffCode, center } = userInput
   const onChangeInput = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput({ ...userInput, [key]: e.target.value })
   }
-  const onChangeSelect = (value: Option) => {
+  const onChangeSelect = (value: string) => {
     setUserInput({ ...defaultValue, center: value })
   }
 
@@ -37,16 +37,16 @@ const LoginForm = () => {
   return (
     <div className={style.container}>
       <form className={style.form_login}>
-        <Select onChange={onChangeSelect} value={center} options={options} placeholder={'물류센터를 선택해주세요'} />
-        <Input type="text" value={userName} onChange={onChangeInput('userName')} placeholder="Username" />
+        <Select onChange={onChangeSelect} value={center} options={options} placeholder={'물류센터'} />
+        <Input type="text" value={loginId} onChange={onChangeInput('loginId')} placeholder="Username" />
         <Input type="password" value={password} onChange={onChangeInput('password')} placeholder="Password" />
-        <Input type="text" value={code} onChange={onChangeInput('code')} placeholder="직원확인코드" />
+        <Input type="text" value={staffCode} onChange={onChangeInput('staffCode')} placeholder="직원확인코드" />
         <Button
           block
           onClick={e => {
             e.preventDefault()
             if (!center) return
-            loginCallback({ userName, password, code, logistic_code: center.value })
+            loginCallback({ loginId, password, staffCode, centerName: center })
           }}>
           로그인
         </Button>

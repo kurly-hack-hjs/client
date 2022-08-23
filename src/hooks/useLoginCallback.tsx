@@ -4,8 +4,8 @@ import userAtom from '@recoil/user'
 import { useRecoilCallback } from 'recoil'
 
 const useLoginCallback = () =>
-  useRecoilCallback(({ set }) => async ({ userName, password, code, logistic_code }: LoginParams) => {
-    const data = await UserAPI.login({ userName, password, code, logistic_code })
+  useRecoilCallback(({ set }) => async ({ loginId, password, staffCode, centerName }: LoginParams) => {
+    const data = await UserAPI.login({ loginId, password, staffCode, centerName })
     set(userAtom, data)
   })
 

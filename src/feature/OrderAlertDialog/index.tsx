@@ -36,11 +36,11 @@ const OrderAlertDialog = (props: ConfirmationDialogRawProps) => {
         <DialogContent>
           <ul className={styles.alertUl}>
             <li>
-              <div className={styles.alertImg}></div>
+              <img className={styles.alertImg} src={`${process.env.REACT_APP_AWS_S3_END_POINT}/example2.jpeg`} />
               <img src={checkmarkImg} />
             </li>
             <li>
-              <div className={styles.alertImg}></div>
+              <img className={styles.alertImg} src={`${process.env.REACT_APP_AWS_S3_END_POINT}/example3.jpeg`} />
               <img src={errorImg} />
             </li>
           </ul>

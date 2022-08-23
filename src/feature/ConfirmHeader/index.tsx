@@ -1,7 +1,9 @@
-import style from './index.module.scss'
 import { Logo } from '@components'
-import { Order } from '@src/types'
+import userAtom from '@recoil/user'
 import { getScanStatusString } from '@services'
+import { Order } from '@src/types'
+import { useRecoilValue } from 'recoil'
+import style from './index.module.scss'
 
 type ConfirmHeaderProps = {
   order: Order
@@ -9,6 +11,7 @@ type ConfirmHeaderProps = {
 
 const ConfirmHeader = ({ order }: ConfirmHeaderProps) => {
   const { id, scanStatus } = order
+  const user = useRecoilValue(userAtom)
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -18,7 +21,7 @@ const ConfirmHeader = ({ order }: ConfirmHeaderProps) => {
         <Logo primary size="small" />
       </div>
       <p className={style.info}>
-        <em>이소담</em>님,
+        <em>{user?.loginId}</em>님,
         <br />
         주문번호{' '}
         <em>

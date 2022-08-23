@@ -48,7 +48,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid #d9d9d9;
 
-    &.validated {
+    &.COMPLETE {
       color: #fff;
       background: linear-gradient(45deg, #b57eea, #abb2ea);
       .curcle {
@@ -68,8 +68,8 @@
       }
     }
 
-    &.not_validated {
-      .curcle {
+    &.STANDBY {
+      .circle {
         border: 1px dashed #787878;
         color: #787878;
       }
@@ -79,7 +79,7 @@
     &.failed {
     }
 
-    .curcle {
+    .circle {
       display: flex;
       width: 45px;
       height: 45px;
@@ -88,9 +88,11 @@
       color: #404040;
       border-radius: 50%;
       font-size: 10px;
+      line-height: 12px;
       word-break: break-all;
       align-items: center;
       justify-content: center;
+      white-space: pre-wrap;
     }
 
     dl {

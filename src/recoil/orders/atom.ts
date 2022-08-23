@@ -1,8 +1,7 @@
-import { GetOrdersResponse } from '@src/types'
+import { OrderList } from '@src/types'
 import { atom } from 'recoil'
-import { getOrders } from '@apis/order'
 
-export const orderListAtom = atom<GetOrdersResponse>({
+export const orderListAtom = atom<OrderList>({
   key: 'orderList',
   default: [],
   // effects: [
@@ -12,7 +11,7 @@ export const orderListAtom = atom<GetOrdersResponse>({
   // ],
 })
 
-export const keywordAtom = atom({
-  key: 'keyword',
+export const orderIdAtom = atom({
+  key: 'orderId',
   default: '',
 })

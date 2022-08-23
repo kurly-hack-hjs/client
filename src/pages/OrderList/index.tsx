@@ -2,40 +2,31 @@ import { useState } from 'react'
 import cx from 'classnames'
 import style from './orderList.module.scss'
 import { getOrders } from '@apis/order'
-import React, { ChangeEvent, useEffect } from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import { orderListAtom } from '@recoil/orders'
-import { FilterIcon, SearchIcon, RightArrowIcon } from '@src/assets/svgs'
-import FilterDialog from '@src/feature/FilterDialog'
+import { SearchIcon, RightArrowIcon } from '@src/assets/svgs'
 import { PurpleLogo } from '@src/components/PurpleLogo'
 import OrderAlertDialog from '@src/feature/OrderAlertDialog'
+import OrderSearch from '@src/feature/OrderSearch'
 
 const OrderList = () => {
   const [orderList, setOrderList] = useRecoilState(orderListAtom)
-  const [orderId, setOrderId] = useState('')
-  const [filterOpen, setFilterOpen] = useState(false)
-  const [filter, setFilter] = useState('주문번호')
   const [alertOpen, setAlertOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const [todayShow, setTodayShow] = useState(true)
+
   useEffect(() => {
     ;(async () => {
       const data = await getOrders()
-      setOrderList(data)
+      setOrderList(data.content)
     })()
   }, [setOrderList])
 
-  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setOrderId(e.currentTarget.value)
-  }
-  const handleSearchOpen = () => {}
-
-  const handleFilterOpen = () => {
-    setFilterOpen(true)
+  const handleSearchOpen = () => {
+    setSearchOpen(!searchOpen)
   }
 
-  const handleFilterClose = () => {
-    setFilterOpen(false)
-  }
   const handleAlertOpen = () => {
     setAlertOpen(true)
   }
@@ -43,10 +34,10 @@ const OrderList = () => {
     setAlertOpen(false)
   }
   if (!orderList) return null
-  console.log(alertOpen)
+
   return (
     <div className={style.wrapper}>
-      <FilterDialog keepMounted open={filterOpen} onClose={handleFilterClose} value={filter} />
+      <OrderSearch />
       <div className={style.container}>
         <div className={style.filterWrap}>
           <PurpleLogo />
@@ -56,11 +47,6 @@ const OrderList = () => {
                 <SearchIcon />
               </button>
             </li>
-            <li>
-              <button type="button" onClick={handleFilterOpen}>
-                <FilterIcon />
-              </button>
-            </li>
           </ul>
         </div>
         <p className={style.notice}>
@@ -68,17 +54,28 @@ const OrderList = () => {
         </p>
       </div>
       <ul className={style.orderUl}>
-        {orderList.map(order => (
-          <li key={order.id} className={cx(style.orderList, style[order.status])} onClick={handleAlertOpen}>
-            <div className={style.curcle}>{order.status}</div>
+        {Array.isArray(orderList) ? (
+          orderList.map(order => (
+            <li key={order.id} className={cx(style.orderList, style[order.scanStatus])} onClick={handleAlertOpen}>
+              <div className={style.curcle}>{order.scanStatus}</div>
+              <dl>
+                <dt>주문번호:{order.id}</dt>
+                <dd>-{order.memo}</dd>
+              </dl>
+              <RightArrowIcon className={style.rightArrow} />
+              {todayShow && <OrderAlertDialog open={alertOpen} onClose={handleAlertClose} value={order} />}
+            </li>
+          ))
+        ) : (
+          <li className={cx(style.orderList, style[orderList.scanStatus])} onClick={handleAlertOpen}>
+            <div className={style.curcle}>{orderList.scanStatus}</div>
             <dl>
-              <dt>주문번호:{order.id}</dt>
-              <dd>-{order.status}</dd>
+              <dt>주문번호:{orderList.id}</dt>
+              <dd>-{orderList.memo}</dd>
             </dl>
             <RightArrowIcon className={style.rightArrow} />
-            {todayShow && <OrderAlertDialog open={alertOpen} onClose={handleAlertClose} value={order} />}
           </li>
-        ))}
+        )}
       </ul>
     </div>
   )

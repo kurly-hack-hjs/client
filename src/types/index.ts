@@ -44,9 +44,9 @@ export type Order = {
 export type GetOrdersResponse = Order[]
 
 export type User = {
-  userName: string
-  code: string
-  logistic_center: LogisticsCenter
+  loginId: string
+  staffCode: string
+  centerName: string
 }
 
 export type LoginParams = {
@@ -55,8 +55,6 @@ export type LoginParams = {
   password: string
   centerName: string
 }
-
-export type LoginResponse = User
 
 export type Item = {
   id: string

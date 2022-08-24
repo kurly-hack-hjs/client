@@ -1,5 +1,5 @@
 import style from './index.module.scss'
-import { Footer, Loading, Notification } from '@components'
+import { Footer, Loading, Notification } from '..'
 
 type DefaultLayoutProps = {
   children?: React.ReactNode

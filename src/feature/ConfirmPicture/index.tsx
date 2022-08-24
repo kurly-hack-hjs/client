@@ -1,9 +1,8 @@
-import * as ConfirmAPI from '@apis/confirm'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import Button from '@mui/material/Button'
 import { uploadImage } from '@services'
-import { useFileUpload } from '@src/hooks'
-import { Snapshot } from '@src/types'
+import { useFileUpload, useScanCallback } from '@src/hooks'
+import { Order, Snapshot } from '@src/types'
 import { useEffect } from 'react'
 import style from './index.module.scss'
 
@@ -78,25 +77,24 @@ const ConfirmStep = ({ children, stepCnt, status }: ConfirmStepProps) => {
 
 type ConfirmPictureProps = {
   snapshotList: Snapshot[]
+  order: Order
 }
 
-const ConfirmPicture = ({ snapshotList }: ConfirmPictureProps) => {
-  const { DummyElement, fileInfo, uploadFile } = useFileUpload()
+const ConfirmPicture = ({ snapshotList, order }: ConfirmPictureProps) => {
+  const { DummyElement, fileInfo, uploadFile, clearFile } = useFileUpload()
+  const scanCallback = useScanCallback()
+  const { id: orderId } = order
   useEffect(() => {
     if (!fileInfo) return
     uploadImage(fileInfo.file)
     const upload = async () => {
       const response = await uploadImage(fileInfo.file)
-      const data = await ConfirmAPI.scan({
-        orderId: 1231246,
-        imageUrl: 'https://img-cf.kurly.com/shop/data/goods/1656479672431l0.jpg',
-        loginId: 'young',
-      })
-      console.log(response)
-      console.log(data)
+      clearFile()
+      const { Location } = response
+      await scanCallback({ orderId, imageUrl: Location, tryCount: snapshotList.length, loginId: 'sodam' })
     }
     upload()
-  }, [fileInfo])
+  }, [fileInfo, scanCallback, orderId, snapshotList, clearFile])
 
   const renderStepper = () => {
     const elements = []

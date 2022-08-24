@@ -6,10 +6,12 @@ import { SCAN_STATUS } from '@src/types'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+import { useNavigate } from 'react-router-dom'
 import style from './index.module.scss'
 
 const Confirm = () => {
   const { orderId } = useParams()
+  const navigate = useNavigate()
   const getOrderCallback = useGetOrderCallback()
   const orderInfo = useRecoilValue(orderWithOrderIdURLParam(orderId))
 
@@ -28,9 +30,11 @@ const Confirm = () => {
     <div className={style.container}>
       <ConfirmHeader order={order} />
       <ConfirmList items={{ ...items, itemList }} />
-      <ConfirmPicture snapshotList={snapshotList} />
+      <ConfirmPicture snapshotList={snapshotList} order={order} />
       <div className={style.wrap_button}>
-        <Button sx={{ color: '#6200EE' }}>검증실패</Button>
+        <Button sx={{ color: '#6200EE' }} onClick={() => navigate(`/fail/${orderId}`)}>
+          검증실패
+        </Button>
         <Button variant="contained" sx={{ backgroundColor: '#6200EE' }} disabled={disabled}>
           검증완료
         </Button>

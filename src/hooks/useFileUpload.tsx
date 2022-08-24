@@ -29,7 +29,12 @@ const useFileUpload = () => {
   const uploadFile = () => {
     inputEl.current?.click()
   }
-  return { fileInfo, uploadFile, DummyElement }
+
+  const clearFile = () => {
+    setFileInfo(undefined)
+  }
+
+  return { fileInfo, uploadFile, DummyElement, clearFile }
 }
 
 export { useFileUpload }

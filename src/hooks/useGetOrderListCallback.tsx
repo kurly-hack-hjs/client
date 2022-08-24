@@ -1,5 +1,5 @@
 import * as OrderAPI from '@apis/order'
-import isLoadingAtom from '@recoil/global'
+import isLoadingAtom, { messageAtom } from '@recoil/global'
 import orderListAtom from '@recoil/orders'
 import { useRecoilCallback } from 'recoil'
 
@@ -13,8 +13,8 @@ const useGetOrderListCallback = () =>
         try {
           const { content } = await OrderAPI.getOrders()
           set(orderListAtom, content)
-        } catch (e) {
-          console.log(e)
+        } catch (e: any) {
+          set(messageAtom, { text: e.message, type: 'error' })
         } finally {
           set(isLoadingAtom, false)
         }

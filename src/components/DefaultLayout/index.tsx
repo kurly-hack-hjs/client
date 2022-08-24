@@ -1,5 +1,5 @@
 import style from './index.module.scss'
-import { Footer, Loading } from '@components'
+import { Footer, Loading, Notification } from '@components'
 
 type DefaultLayoutProps = {
   children?: React.ReactNode
@@ -7,6 +7,7 @@ type DefaultLayoutProps = {
 
 const DefaultLayout = ({ children }: DefaultLayoutProps) => (
   <div className={style.container}>
+    <Notification />
     <Loading />
     <div className={style.content}>{children}</div>
     <Footer />

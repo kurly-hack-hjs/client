@@ -2,7 +2,7 @@ import * as OrderAPI from '@apis/order'
 import orderAtomFamily from '@recoil/order'
 import { GetOrderParams } from '@src/types'
 import { useRecoilCallback } from 'recoil'
-import isLoadingAtom from '@recoil/global'
+import isLoadingAtom, { messageAtom } from '@recoil/global'
 
 const useGetOrderCallback = () =>
   useRecoilCallback(
@@ -14,8 +14,8 @@ const useGetOrderCallback = () =>
         try {
           const data = await OrderAPI.getOrder({ orderId })
           set(orderAtomFamily(orderId), data)
-        } catch (e) {
-          console.log(e)
+        } catch (e: any) {
+          set(messageAtom, { text: e.message, type: 'error' })
         } finally {
           set(isLoadingAtom, false)
         }

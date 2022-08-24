@@ -92,10 +92,19 @@ export type Items = {
 export type GetOrderResponse = {
   items: Items
   order: Order
+  snapshotList: Snapshot[]
 }
 
 export type ScanParams = {
   imageUrl: string
   orderId: number
   loginId: string
+}
+
+export type Snapshot = {
+  orderId: number
+  tryCount: number
+  itemList: Item[]
+  foundedItem: Item[]
+  satisfied: boolean
 }

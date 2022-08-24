@@ -1,5 +1,5 @@
 import endpoint from './endpoint'
-import { ScanParams, ScanResponse } from '@src/types'
+import { ScanParams, ScanResponse, UpdateConfirmResultParams } from '@src/types'
 
 const scan = async (params: ScanParams): Promise<ScanResponse> => {
   const response = await endpoint.post('scan', params)
@@ -7,4 +7,8 @@ const scan = async (params: ScanParams): Promise<ScanResponse> => {
   return data
 }
 
-export { scan }
+const updateConfirmResult = async (params: UpdateConfirmResultParams) => {
+  await endpoint.post(`/order/update`, params)
+}
+
+export { scan, updateConfirmResult }

@@ -1,3 +1,5 @@
+import { ScanStatus } from 'aws-sdk/clients/ecr'
+
 export type Option = {
   label: string
   value: any
@@ -117,4 +119,21 @@ export type ScanResponse = {
     orderId: number
     snapshots: Item[]
   }
+}
+
+export type UpdateConfirmResultParams = {
+  loginId: string
+  memo: string
+  newOrderScanStatus: SCAN_STATUS
+  orderId: number
+}
+
+export type Message = {
+  text: string
+  type: 'error' | 'warning' | 'info' | 'success'
+}
+
+export type Error = {
+  status: string
+  data: string
 }

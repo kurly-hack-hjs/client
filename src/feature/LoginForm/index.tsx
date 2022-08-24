@@ -36,6 +36,7 @@ const LoginForm = () => {
   return (
     <div className={style.container}>
       <form className={style.form_login}>
+        <span className={style.with}>with 마켓컬리</span>
         <Select onChange={onChangeSelect} value={center} options={options} placeholder={'물류센터'} />
         <Input type="text" value={loginId} onChange={onChangeInput('loginId')} placeholder="Username" />
         <Input type="password" value={password} onChange={onChangeInput('password')} placeholder="Password" />

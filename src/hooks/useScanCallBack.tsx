@@ -2,7 +2,7 @@ import * as ConfirmAPI from '@apis/confirm'
 import orderAtomFamily from '@recoil/order'
 import { ScanParams, SCAN_STATUS, Snapshot } from '@src/types'
 import { useRecoilCallback } from 'recoil'
-import isLoadingAtom from '@recoil/global'
+import isLoadingAtom, { messageAtom } from '@recoil/global'
 
 const useScanCallback = () =>
   useRecoilCallback(
@@ -30,8 +30,8 @@ const useScanCallback = () =>
             ...order,
             snapshotList: [...order.snapshotList, newSnapshot],
           })
-        } catch (e) {
-          console.log(e)
+        } catch (e: any) {
+          set(messageAtom, { text: e.message, type: 'error' })
         } finally {
           set(isLoadingAtom, false)
         }

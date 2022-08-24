@@ -4,7 +4,7 @@ import style from './index.module.scss'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import { useRecoilValue } from 'recoil'
 import { orderWithOrderIdURLParam } from '@recoil/order'
-import { useGetOrderCallback } from '@hooks'
+import { useGetOrderCallback, useUpdateConfirmResultCallback } from '@hooks'
 import { getScanStatusString } from '@src/services'
 import { Select } from '@components'
 import { SCAN_STATUS } from '@src/types'
@@ -17,6 +17,8 @@ const ConfirmFail = () => {
   const orderInfo = useRecoilValue(orderWithOrderIdURLParam(orderId))
   const navigate = useNavigate()
   const getOrderCallback = useGetOrderCallback()
+  const UpdateConfirmResultCallback = useUpdateConfirmResultCallback()
+  console.log(status)
   useEffect(() => {
     if (orderId) getOrderCallback({ orderId: parseInt(orderId) })
   }, [orderId, getOrderCallback])
@@ -40,6 +42,11 @@ const ConfirmFail = () => {
     label: getScanStatusString(value),
     value: value,
   }))
+
+  const onSubmit = () => {
+    UpdateConfirmResultCallback({ orderId: orderInfo.order.id, loginId: 'young', newOrderScanStatus: status, memo })
+  }
+
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -63,8 +70,12 @@ const ConfirmFail = () => {
         <p className={style.info}>*임의로 지정할 검증상태 선택</p>
       </div>
       <div className={style.footer}>
-        <Button sx={{ color: '#6200EE' }}>CANCEL</Button>
-        <Button sx={{ color: '#6200EE' }}>SAVE</Button>
+        <Button sx={{ color: '#6200EE' }} onClick={() => navigate(-1)}>
+          CANCEL
+        </Button>
+        <Button sx={{ color: '#6200EE' }} onClick={onSubmit}>
+          SAVE
+        </Button>
       </div>
     </div>
   )

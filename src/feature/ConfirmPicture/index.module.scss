@@ -32,29 +32,36 @@
 }
 
 .result_container {
-  margin-left: 9px;
+  margin-left: 6px;
   border-left: 2px solid #b67beb;
   padding: 8px 0 20px 18px;
 }
 
 .result_content {
   width: 288px;
-  height: 105px;
   background-color: #f9f9f9;
   box-sizing: border-box;
+  padding: 14px;
+  line-height: 16px;
+  em {
+    font-weight: 700;
+  }
+  p {
+    margin-bottom: 14px;
+  }
 }
 
 .warning,
 .success {
   .circle {
-    content: url('../../../public/images/circle_filled.svg');
+    content: url('../../../public/images/circle_filled.png');
   }
 }
 
-.before {
-  .circle {
-    content: url('../../../public/images/circle_empty.svg');
-  }
+.circle {
+  width: 14px;
+  height: 14px;
+  content: url('../../../public/images/circle_empty.png');
 }
 
 .warning {

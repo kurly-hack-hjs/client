@@ -1,0 +1,92 @@
+@use '@styles/design-system.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.btn_close {
+  width: 25px;
+  height: 25px;
+  margin-right: 24px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  height: 58px;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  padding: 19px 16px;
+  span {
+    line-height: 24px;
+    font-size: $font-large;
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: 400;
+  }
+}
+
+.content {
+  padding: 14px 40px 0 40px;
+  flex: 1;
+}
+
+.footer {
+  height: 60px;
+  width: 100%;
+}
+
+.order_info {
+  p {
+    font-size: $font-large;
+    line-height: 24px;
+    em {
+      font-weight: 700;
+    }
+  }
+  margin-bottom: 24px;
+}
+
+.wrap_memo {
+  margin: 24px 0;
+  span {
+    margin-left: 16px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  textarea {
+    width: 100%;
+    height: 125px !important;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+}
+
+.info {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+}
+
+.footer {
+  text-align: right;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  button {
+    margin-right: 16px;
+    width: 88px;
+    height: 36px;
+  }
+}

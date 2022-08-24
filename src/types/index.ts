@@ -99,6 +99,7 @@ export type ScanParams = {
   imageUrl: string
   orderId: number
   loginId: string
+  tryCount: number
 }
 
 export type Snapshot = {
@@ -107,4 +108,13 @@ export type Snapshot = {
   itemList: Item[]
   foundedItem: Item[]
   satisfied: boolean
+}
+
+export type ScanResponse = {
+  foundItemsFromPicture: Item[]
+  order: Order
+  thisTurnSnapshot: {
+    orderId: number
+    snapshots: Item[]
+  }
 }

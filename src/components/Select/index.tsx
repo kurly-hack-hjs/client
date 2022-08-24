@@ -10,9 +10,10 @@ type SelectProps = {
   value?: string
   placeholder?: string
   options?: Option[]
+  block?: boolean
 }
 
-const Select = ({ onChange, value, placeholder, options }: SelectProps) => {
+const Select = ({ onChange, value, placeholder, options, block = false }: SelectProps) => {
   const renderOptions = () => {
     if (!options) return null
     return options.map(option => (
@@ -23,7 +24,7 @@ const Select = ({ onChange, value, placeholder, options }: SelectProps) => {
   }
 
   return (
-    <FormControl className={style.container}>
+    <FormControl className={`${style.container} ${block ? `${style.block}` : ''}`}>
       <InputLabel id="demo-simple-select-helper-label">{placeholder}</InputLabel>
       <MSelect
         value={value}

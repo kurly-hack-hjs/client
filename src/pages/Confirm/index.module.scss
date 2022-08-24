@@ -4,3 +4,14 @@
   background-color: #f8f8f8;
   padding-top: 235px;
 }
+
+.wrap_button {
+  text-align: right;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  button {
+    margin-right: 16px;
+    width: 88px;
+    height: 36px;
+  }
+}

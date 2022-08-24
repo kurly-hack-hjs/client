@@ -18,7 +18,6 @@ const ConfirmFail = () => {
   const navigate = useNavigate()
   const getOrderCallback = useGetOrderCallback()
   const UpdateConfirmResultCallback = useUpdateConfirmResultCallback()
-  console.log(status)
   useEffect(() => {
     if (orderId) getOrderCallback({ orderId: parseInt(orderId) })
   }, [orderId, getOrderCallback])
